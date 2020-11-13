@@ -70,6 +70,11 @@ void LiteCov::Init(int argc, char **argv) {
     ModuleInfo *module = *iter;
     module->client_data = new ModuleCovData();
   }
+
+  is_macOS = false;
+#ifdef __APPLE__
+  is_macOS = true;
+#endif
 }
 
 void LiteCov::OnModuleInstrumented(ModuleInfo *module) {

@@ -17,6 +17,8 @@ limitations under the License.
 #ifndef LITECOV_H
 #define LITECOV_H
 
+#include <sys/shm.h>
+
 #include <unordered_map>
 #include <set>
 
@@ -50,6 +52,9 @@ public:
   unsigned char *coverage_buffer_remote;
   size_t coverage_buffer_size;
   size_t coverage_buffer_next;
+
+  unsigned char *coverage_buffer_share;
+  unsigned char *coverage_buffer_share_ptr;
 
   std::set<uint64_t> collected_coverage;
   std::set<uint64_t> ignore_coverage;
@@ -134,6 +139,7 @@ private:
 
   CovType coverage_type;
   bool compare_coverage;
+  bool is_macOS;
 };
 
 #endif // LITECOV_H
